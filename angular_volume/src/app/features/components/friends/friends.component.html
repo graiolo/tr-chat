@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="box">
+    <div class="input-container">
+      <input
+        id="search"
+        class="friend-input"
+        type="text"
+        [(ngModel)]="search"
+        [placeholder]="placeholder"
+        autocomplete="on"
+        spellcheck="false"
+      />
+      <button (click)="searchPlayer()">SEARCH</button>
+    </div>
+    <div
+      class="card-box"
+      (wheel)="onMouseWheel($event, 'card')"
+      [style.grid-row]="friend ? '1 / 3' : '1 / end'"
+    >
+      <app-friend-card
+        [topVh]="friend"
+        class="card"
+        *ngFor="let user of users"
+        [username]="user.username"
+      ></app-friend-card>
+    </div>
+    <span class="no-friend" *ngIf="noFriends"
+      >ADD SOME FRIEND FROM SEARCHBAR</span
+    >
+    <div class="friend-request" *ngIf="friend">
+      <div class="new-request">
+        <div class="line-s"></div>
+        <span>NEW FRIEND REQUEST</span>
+        <div class="line-e"></div>
+      </div>
+      <div class="request-box" (wheel)="onMouseWheel($event, 'request')">
+        <app-request-card
+          class="request-card"
+          *ngFor="let request of friendRequests"
+          [username]="request.username"
+          (reload)="loadFriend()"
+        ></app-request-card>
+      </div>
+    </div>
+  </div>
+</div>

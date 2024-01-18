@@ -1,0 +1,28 @@
+.friend {
+  grid-column: 1 / 2;
+}
+
+.friend span {
+  cursor: pointer;
+}
+
+.fa-solid {
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.chat {
+  grid-column: 2 / 2;
+}
+
+.chat span {
+  cursor: pointer;
+}
+
+.block {
+  grid-column: 3 / 3;
+}
+
+.block span {
+  cursor: pointer;
+}

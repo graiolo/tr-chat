@@ -1,0 +1,34 @@
+.tile {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 55px;
+  font-size: 25px;
+}
+
+.home {
+  position: absolute;
+  left: 2vh;
+  top: 35%;
+}
+
+.result {
+  color: white;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.away {
+  position: absolute;
+  right: 2vh;
+  top: 35%;
+}
+
+@media (max-width: 765px) {
+  .tile {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<main class="container">
+  <section class="box">
+    <ng-container *ngIf="user"
+      ><div class="image-space">
+        <app-profile-image
+          [user]="user"
+          [currentUser]="currentUser"
+        ></app-profile-image>
+      </div>
+      <div class="username-space">
+        <span class="username">{{ user.username }}</span>
+      </div>
+      <ng-container *ngIf="!currentUser">
+        <app-user-buttons
+          class="user-buttons"
+          [username]="user.username"
+          [isFriend]="isFriend"
+          [isBlocked]="isBlocked"
+        ></app-user-buttons>
+      </ng-container>
+      <section></section>
+      <div
+        *ngIf="games.length !== 0"
+        [ngClass]="currentUser ? 'match' : 'match-other'"
+      >
+        MATCH HISTORY
+      </div>
+      <section
+        *ngIf="games.length !== 0"
+        [ngClass]="currentUser ? 'gamesbox' : 'gamesbox-other'"
+      >
+        <app-game-tile *ngFor="let game of games" [game]="game"></app-game-tile>
+      </section>
+      <section class="matchbox">
+        <div class="win">WIN</div>
+        <div class="winRes">
+          {{ user.Wins }}
+        </div>
+        <div class="lose">LOSE</div>
+        <div class="loseRes">
+          {{ user.Losses }}
+        </div>
+      </section>
+      <ng-container *ngIf="currentUser"
+        ><app-two-factor-auth class="auth" [user]="user"> </app-two-factor-auth>
+      </ng-container>
+      <div class="logout" *ngIf="currentUser">
+        <button class="logout-bt" (click)="logout()">LOGOUT</button>
+      </div>
+    </ng-container>
+  </section>
+</main>

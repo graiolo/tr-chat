@@ -1,0 +1,86 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13.5
+    networks:
+      trascendence_network:
+        aliases:
+          - post
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+  nest:
+    build:
+      context: ./NestJS/
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    networks:
+      trascendence_network:
+        aliases:
+          - nest
+    env_file:
+      - .env
+    volumes:
+      - nest_volume:/usr/src/app/
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+
+  angular:
+    build:
+      context: ./Angular/
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - nest
+    networks:
+      trascendence_network:
+        aliases:
+          - angular
+    volumes:
+      - angular_volume:/usr/src/app/
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./Nginx/
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - nest
+      - angular
+    ports:
+      - "8080:8080"
+    networks:
+      trascendence_network:
+        aliases:
+          - ngx
+    env_file:
+      - .env
+    restart: unless-stopped
+
+networks:
+  trascendence_network:
+
+volumes:
+  nest_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "./nest_volume/"
+    name: "nest_volume"
+
+  angular_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "./angular_volume/"
+    name: "angular_volume"

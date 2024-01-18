@@ -1,0 +1,45 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <h1 class="signup-title">Create a new account</h1>
+    <form id="signupForm" autocomplete="off" [formGroup]="signupForm">
+      <div class="form-group">
+        <input
+          id="username"
+          formControlName="username"
+          type="text"
+          class="form-control signup-input"
+          placeholder="Username"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          class="form-control signup-input"
+          placeholder="Email"
+          autocomplete="on"
+          spellcheck="false"
+        />
+      </div>
+      <app-password
+        formControlName="password"
+        [placeholder]="'Password'"
+      ></app-password>
+      <app-password
+        formControlName="confirmPassword"
+        [placeholder]="'Confirm   password'"
+      ></app-password>
+      <div class="error">{{ errorMsg }}</div>
+      <button
+        type="submit"
+        class="btn btn-primary signup-button"
+        (click)="newUser()"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>

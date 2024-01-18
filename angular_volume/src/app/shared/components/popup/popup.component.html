@@ -1,0 +1,10 @@
+<div class="popup" [ngClass]="{ active: isOpen }">
+  <img src="/assets/Google.svg.png" width="100" height="100" />
+  <input
+    [(ngModel)]="code"
+    placeholder="Google 2FA"
+    type="number"
+    spellcheck="false"
+  />
+  <button (click)="sendCode()">CONFIRM</button>
+</div>

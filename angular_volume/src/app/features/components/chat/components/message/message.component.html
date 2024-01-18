@@ -1,0 +1,11 @@
+<ng-container *ngIf="currentUser; else otherUser">
+  <section class="message mine">
+    <span class="message-content">{{ message.msg }}</span>
+  </section>
+</ng-container>
+<ng-template #otherUser>
+  <section class="message other">
+    <span *ngIf="!currentUser" class="username">{{ message.user }}</span>
+    <span class="message-content">{{ message.msg }}</span>
+  </section>
+</ng-template>

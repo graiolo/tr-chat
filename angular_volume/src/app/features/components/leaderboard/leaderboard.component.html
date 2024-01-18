@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<main class="container">
+  <section class="box">
+    <h1 class="title">LEADERBOARD</h1>
+    <section class="card-box">
+      <section
+        class="player-card"
+        *ngFor="let player of players; let i = index"
+      >
+        <div class="rank">
+          {{ i + 1 }}
+        </div>
+        <div>
+          <div class="profile-img">
+            <img [src]="player.img" />
+          </div>
+          <div class="username" (click)="openProfile(player.username)">
+            {{ player.username }}
+          </div>
+          <div class="win">{{ player.Wins }}</div>
+          <div class="lose">{{ player.Losses }}</div>
+        </div>
+      </section>
+    </section>
+  </section>
+</main>

@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  username  String    @unique
+  email     String    @unique
+  hash      String
+  hashedRt  String?
+  img       String    @default("")
+  
+  isOnline              Boolean @default(false)
+  isPlaying             Boolean @default(false)
+  Wins                  Int     @default(0)
+  Losses                Int     @default(0)
+  Played                Int     @default(0)
+
+  is2faEnabled          Boolean @default(false)
+  secret2fa             String?
+  qrcode2fa             String?
+
+  channels      ChannelMembership[]
+  mexSent       Message[]           @relation("Message_Sender")
+
+  friendRequestsSent     Friendship[] @relation("Friendship_Sender")
+  friendRequestsReceived Friendship[] @relation("Friendship_Receiver")
+
+  blockedUsers    BlockedUser[] @relation("Blocker_Relation")
+  blockedBy       BlockedUser[] @relation("Blocked_Relation")
+
+  matchHistory Int[] //ids of matches
+
+	gameRequestsSent        Gameinvite[]        @relation("Game_Sender")
+  gameRequestsReceived    Gameinvite[]        @relation("Game_Receiver")
+
+  @@map("users")
+}
+
+model matchHistory {
+  id        Int       @id @default(autoincrement())
+  User1Id   String
+  User2Id   String
+  winner    String
+  score     String
+  mode      MatchMode
+  createdAt DateTime @default(now())
+}
+
+model Channel {
+  id        String                 @id @default(uuid()) @unique
+  type      ChannelType
+  img       String    @default("")
+  name      String?   @unique
+  password  String?
+  members   ChannelMembership[]
+  messages  Message[]
+  lastSeen  String[] @default([])
+  }
+
+model ChannelMembership {
+  userId      Int
+  user        User        @relation(fields: [userId], references: [id])
+  channelId   String
+  channel     Channel     @relation(fields: [channelId], references: [id])
+  role        UserRole    
+  status      UserStatus? 
+  muteEndTime DateTime?
+
+  @@id([userId, channelId])
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  channelId String
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  senderId  Int
+  sender    User     @relation("Message_Sender", fields: [senderId], references: [id])
+  time      DateTime @default(now())
+  content   String
+  read      Boolean  @default(false)
+}
+
+enum ChannelType {
+  PUBLIC
+  PRIVATE
+  DIRECT
+}
+
+enum UserRole {
+  MEMBER
+  ADMIN
+  OWNER
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+  MUTED
+}
+
+enum MatchMode {
+  CLASSIC
+  CYBERPUNK
+}
+
+model Friendship {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  sender     User             @relation("Friendship_Sender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId Int
+  receiver   User             @relation("Friendship_Receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  status     FriendshipStatus
+
+  @@unique([senderId, receiverId])
+}
+
+model Gameinvite {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  sender     User             @relation("Game_Sender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId Int
+  receiver   User             @relation("Game_Receiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  status     GameinviteStatus
+
+  @@unique([senderId, receiverId])
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+}
+
+enum GameinviteStatus {
+  PENDING
+  ACCEPTED
+  OUTDATED
+}
+
+model BlockedUser {
+  blockerId Int
+  blocker   User   @relation("Blocker_Relation", fields: [blockerId], references: [id], onDelete: Cascade)
+  blockedId Int
+  blocked   User   @relation("Blocked_Relation", fields: [blockedId], references: [id], onDelete: Cascade)
+
+  @@id([blockerId, blockedId])
+}

@@ -1,0 +1,15 @@
+<section class="tile">
+  <div
+    class="home"
+    [style.color]="currentUser === game.home ? 'orange' : 'red'"
+  >
+    {{ game.home }}
+  </div>
+  <div class="result">{{ game.result }}</div>
+  <div
+    class="away"
+    [style.color]="currentUser === game.away ? 'orange' : 'red'"
+  >
+    {{ game.away }}
+  </div>
+</section>

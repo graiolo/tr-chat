@@ -1,0 +1,69 @@
+<app-navbar (openChat)="isOpen = false"></app-navbar>
+<main class="container">
+  <section class="box" >
+    <section class="sidebar" >
+      <div class="title">
+        <div class="back" *ngIf="screenW < 650 && isOpen" (click)="backClick()">
+          <i class="fa-solid fa-angles-left fa-2xl" (click)="backClick()"></i>
+        </div>
+        <i></i>
+        <p>{{ title }}</p>
+      </div>
+      <input
+        id="search"
+        [(ngModel)]="search"
+        class="search"
+        autocomplete="on"
+        spellcheck="false"
+        [placeholder]="placeholder"
+        (keydown.enter)="searchChat()"
+      />
+      <ng-container *ngFor="let conversation of channels">
+        <!-- *ngIf="conversation.username !== userService.getUser() && !isOpen" -->
+        <app-chat-user
+          [conversation]="conversation"
+          (openChat)="openChat($event)"
+        >
+        </app-chat-user>
+      </ng-container>
+      <div class="create-channel" (click)="newChannel.changeDialogStatus()">
+        <i class="fa-solid fa-people-group fa-2xl"></i>
+      </div>
+    </section>
+    <div *ngIf="msgToShow" style="pointer-events: none;position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+      {{msgToShow}}
+    </div>
+    <ng-container *ngIf="isOpen">
+      <section class="message-area" #messageArea>
+        <app-message *ngFor="let message of messages" [message]="message"></app-message>
+      </section>
+    </ng-container>
+    
+    <form class="message-container" (submit)="sendMessageToUser()">
+      <input
+        id="message-input"
+        *ngIf="chat.length !== 0 || isOpen"
+        class="message-input"
+        type="text"
+        autocomplete="off"
+        spellcheck="true"
+        [(ngModel)]="newMessage"
+        name="message"
+        placeholder="Type a message..."
+      />
+      <button
+        *ngIf="chat.length !== 0 || isOpen"
+        type="submit"
+      >
+        Send
+      </button>
+    </form>
+  </section>
+  <app-new-channel #newChannel></app-new-channel>
+  <div
+    class="backdroppe"
+    *ngIf="newChannel.isOpen"
+    (click)="newChannel.changeDialogStatus()"
+  ></div>
+</main>
+

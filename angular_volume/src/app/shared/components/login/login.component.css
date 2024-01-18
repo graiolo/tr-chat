@@ -1,0 +1,118 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  user-select: none;
+}
+
+.off {
+  display: none;
+}
+
+.login-box {
+  top: 50%;
+  left: 50%;
+  padding: 30px;
+  border-radius: 8px;
+  color: orange;
+  width: 350px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.login-title {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.login-input {
+  font-family: Newake;
+  border-radius: 80px;
+  width: 80%;
+  margin-bottom: 15px;
+  border: 2px solid orange;
+  color: orange;
+  background: transparent;
+  padding: 20px 40px 20px 20px;
+  text-indent: 20px;
+  outline: none;
+  font-size: 15px;
+}
+
+.login-input::placeholder {
+  color: orange;
+  background: transparent;
+  text-indent: 20px;
+}
+
+.login-input:focus {
+  background: transparent;
+}
+
+.login-footer {
+  margin-top: 30px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.login-footer a {
+  font-size: 15px;
+  color: blue;
+  text-decoration: none;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-top: 25px;
+  color: red;
+}
+
+.split-button {
+  display: flex;
+  overflow: hidden;
+}
+
+.split-button button {
+  margin-top: 15px;
+  text-align: center;
+  flex: 1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  transition: background 0.3s;
+}
+
+.split-button .left-half {
+  background-color: orange;
+  color: #fff;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 0;
+}
+
+.split-button .right-half {
+  background-color: black;
+  border: 1px solid orange;
+  color: #fff;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 50px;
+}
+
+.split-button .right-half:hover {
+  background-image: linear-gradient(to right, black, purple);
+}
+
+.split-button .left-half:hover {
+  background-image: linear-gradient(to right, purple, orange);
+}

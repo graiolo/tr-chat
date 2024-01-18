@@ -1,0 +1,49 @@
+<ng-container *ngIf="currentUser; else otherUser">
+  <main class="profile-image-container">
+    <img
+      id="image"
+      class="profile-image"
+      [src]="user.img"
+      appChangeImage
+      [ngStyle]="{
+        color: user.isPlaying ? 'orange' : user.isOnline ? 'green' : 'red'
+      }"
+    />
+    <input
+      type="file"
+      accept="image/*"
+      (change)="onFileSelected($event)"
+      style="display: none"
+      #fileInput
+    />
+    <button
+      (click)="onFileSelected($event)"
+      appChangeImage
+      id="text"
+      class="change-text"
+    >
+      Change Image
+    </button>
+  </main></ng-container
+>
+<ng-template #otherUser>
+  <main class="card-profile-image-container">
+    <img *ngIf="!conversation?.isGroup  && user"
+      id="image"
+      class="profile-image"
+      [src]="user.img"
+      [ngStyle]="{
+        'color': !conversation.allRead ? 'red' : (user.isPlaying ? 'orange' : (user.isOnline ? 'green' : 'red'))
+      }"
+      
+    />
+    <img *ngIf="conversation?.isGroup"
+      id="image"
+      class="profile-image"
+      [src]="conversation.img"
+      [ngStyle]="{
+        color: (conversation.allRead ? 'red' : '')
+      }"
+    />
+  </main>
+</ng-template>

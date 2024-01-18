@@ -1,0 +1,54 @@
+.popup {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border-radius: 8px;
+  color: orange;
+  max-width: 250px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  text-align: center;
+}
+
+.popup input {
+  box-sizing: border-box;
+  color: orange;
+  font-family: Newake;
+  border-radius: 80px;
+  margin-bottom: 15px;
+  border: 2px solid orange;
+  background: transparent;
+  padding: 20px;
+  text-indent: 20px;
+  outline: none;
+  font-size: 15px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.popup input::placeholder {
+  color: orange;
+}
+
+.popup button {
+  width: 100%;
+  color: white;
+  border-radius: 50px;
+  background-image: linear-gradient(to right, purple, orange);
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+  transition: background 0.3s;
+}
+
+.popup.active {
+  display: block;
+}

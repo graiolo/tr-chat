@@ -1,0 +1,51 @@
+{
+  "name": "angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^16.2.12",
+    "@angular/compiler": "^16.2.12",
+    "@angular/core": "^16.2.12",
+    "@angular/forms": "^16.2.12",
+    "@angular/platform-browser": "^16.2.12",
+    "@angular/platform-browser-dynamic": "^16.2.12",
+    "@angular/router": "^16.2.12",
+    "@nestjs/platform-socket.io": "^10.2.8",
+    "@nestjs/typeorm": "^10.0.0",
+    "@nestjs/websockets": "^10.2.8",
+    "angular-in-memory-web-api": "^0.16.0",
+    "ng-speed-test": "^2.6.1",
+    "ngx-cookie-service": "^16.0.2",
+    "ngx-image-compress": "^15.1.6",
+    "node": "^21.1.0",
+    "pg": "^8.11.3",
+    "rxjs": "~7.8.1",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
+    "tslib": "^2.6.2",
+    "typeorm": "^0.3.17",
+    "zone.js": "~0.13.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^16.2.9",
+    "@angular/cli": "~16.2.9",
+    "@angular/compiler-cli": "^16.2.12",
+    "@schematics/angular": "^17.0.1",
+    "@types/jasmine": "~5.1.1",
+    "@types/node": "^20.8.10",
+    "jasmine-core": "~5.1.1",
+    "karma": "~6.4.2",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.1.3"
+  }
+}

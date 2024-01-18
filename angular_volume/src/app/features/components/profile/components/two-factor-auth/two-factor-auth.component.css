@@ -1,0 +1,91 @@
+.google-auth {
+  cursor: pointer;
+  color: red;
+}
+
+.qr {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 2fr 2fr 2fr;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border-radius: 8px;
+  max-width: 250px;
+  min-height: 300px;
+  background-image: url("/assets/giphy2.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  max-height: 400px;
+  min-width: 250px;
+  text-align: center;
+  border: 3px solid black;
+  z-index: 10000000000000;
+}
+
+.popup {
+  background-color: transparent;
+  padding: 20px;
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  border-radius: 30px;
+  margin-top: 40px;
+  grid-row: 2 / 3;
+  max-width: 100%;
+}
+
+.warning {
+  grid-row: 1 / 1;
+  margin-bottom: 35px;
+  color: red;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.buttons {
+  grid-row: 4/4;
+  display: flex;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.buttons .right {
+  position: absolute;
+  bottom: 2vh;
+  right: 2vh;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 15px;
+  transition: background 0.3s;
+  color: white;
+  background-color: red;
+}
+
+.buttons .left {
+  position: absolute;
+  bottom: 2vh;
+  left: 2vh;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 15px;
+  transition: background 0.3s;
+  color: white;
+  background-color: green;
+}
+
+@media (max-width: 1255px) {
+  .qr {
+    backdrop-filter: none;
+    background-color: orange;
+    min-width: 250px;
+  }
+}

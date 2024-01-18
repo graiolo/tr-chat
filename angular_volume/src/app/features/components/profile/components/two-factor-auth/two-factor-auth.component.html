@@ -1,0 +1,31 @@
+<ng-container *ngIf="showQr">
+  <ng-container *ngIf="newQr; else showCurrentQr">
+    <div class="qr">
+      <p class="warning">ATTENTION! SCAN YOUR QR CODE BEFORE CONFIRM</p>
+      <img class="popup" [src]="[user.qrcode2fa]" />
+      <div class="buttons">
+        <button class="left" (click)="onConfirm2FA()">CONFIRM</button>
+        <button class="right" (click)="onReject2FA()">REJECT</button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #showCurrentQr>
+    <div class="qr" *ngIf="!newQr">
+      <p class="warning">YOUR QR CODE</p>
+      <img class="popup" [src]="[user.qrcode2fa]" />
+      <div class="buttons">
+        <button class="left" (click)="closeQr()">CLOSE</button>
+        <button class="right" (click)="onReject2FA()">DISABLE 2FA</button>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+<div
+  class="google-auth"
+  (click)="onEnable2FA()"
+  [ngStyle]="{
+    color: user.is2faEnabled ? 'green' : 'red'
+  }"
+>
+  <i class="fa-sharp fa-solid fa-shield-halved fa-2xl"> 2 FA</i>
+</div>

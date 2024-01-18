@@ -1,0 +1,30 @@
+<ng-container *ngIf="!isFriend; else removeFriendTemplate">
+  <div class="friend">
+    <i class="fa-solid fa-user-plus fa-2xl" (click)="addFriend()"></i><br />
+    <span (click)="addFriend()">ADD FRIEND</span>
+  </div>
+</ng-container>
+<ng-template #removeFriendTemplate>
+  <div class="friend">
+    <i class="fa-solid fa-user-minus fa-2xl" (click)="removeFriend()"></i><br />
+    <span (click)="removeFriend()">REMOVE FRIEND</span>
+  </div>
+</ng-template>
+<div class="chat" (click)="openFriendChat()">
+  <i class="fa-solid fa-headset fa-2xl"></i><br /><span
+    (click)="openFriendChat()"
+    >CHAT</span
+  >
+</div>
+<ng-container *ngIf="!isBlocked; else userBlocked">
+  <div class="block">
+    <i class="fa-solid fa-ban fa-2xl" (click)="blockUser()"> </i><br />
+    <span (click)="blockUser()">BLOCK</span>
+  </div>
+</ng-container>
+<ng-template #userBlocked>
+  <div class="block">
+    <i class="fa-solid fa-handshake fa-2xl" (click)="unblockUser()"> </i><br />
+    <span (click)="unblockUser()">UNBLOCK</span>
+  </div>
+</ng-template>

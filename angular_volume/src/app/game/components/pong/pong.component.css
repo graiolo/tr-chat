@@ -1,0 +1,92 @@
+text {
+  font-family: "Atomic Age", cursive;
+  font-size: 48px;
+  fill: silver;
+}
+
+#ball {
+  fill: silver;
+}
+
+#net {
+  stroke: silver;
+  stroke-width: 3%;
+  stroke-dasharray: 8%, 8%;
+}
+
+.racket {
+  fill: white;
+}
+
+.game {
+  display: block;
+  margin: auto;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100% !important;
+  user-select: none;
+}
+
+.box {
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-rows: 2fr 2fr 2fr;
+  margin-bottom: 90px;
+  height: 85%;
+}
+
+@media (max-width: 765px) {
+  .box {
+    grid-template-columns: 2fr;
+    grid-template-rows: 2fr 2fr 2fr 2fr;
+    margin-bottom: 10vh;
+  }
+}
+
+.player-box {
+  grid-row: 2 /3;
+  grid-column: 2;
+}
+
+.opponent-box {
+  grid-row: 2/3;
+  grid-column: 6/7;
+  align-items: center;
+}
+
+.matchbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 2fr;
+  align-items: center;
+  font-size: 40px;
+  margin-top: 1em;
+}
+
+/* calling-component.css */
+app-profile-image div.profile-image-container {
+  /* Your custom styles for the img element */
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+}

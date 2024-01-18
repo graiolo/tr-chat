@@ -1,0 +1,27 @@
+<div class="navbar">
+  <ng-container *ngIf="screenW > 950; else mobileBar"
+    ><nav class="menu">
+      <span class="logo" routerLink="/trascendence/home">TRASCENDENCE</span>
+      <a routerLink="/trascendence/chat" (click)="onChatClick()">CHAT</a>
+      <a routerLink="/trascendence/leaderboard">LEADERBOARD</a>
+      <a routerLink="/trascendence/friends">FRIENDS</a>
+      <a [routerLink]="['/trascendence/profile', user]">{{ user }}</a>
+    </nav></ng-container
+  >
+  <ng-template #mobileBar
+    ><i
+      class="fa-solid fa-bars fa-2xl ham"
+      style="color: #ffa500; z-index: 10000"
+      appDropmenu
+    ></i>
+    <span class="logo" routerLink="/trascendence/home">TRASCENDENCE</span>
+    <div class="backresp" appDropmenu>
+      <nav class="responsive">
+        <a routerLink="/trascendence/chat" (click)="onChatClick()">CHAT</a>
+        <a routerLink="/trascendence/leaderboard">LEADERBOARD</a>
+        <a routerLink="/trascendence/friends">FRIENDS</a>
+        <a [routerLink]="['/trascendence/profile', user]">{{ user }}</a>
+      </nav>
+    </div></ng-template
+  >
+</div>

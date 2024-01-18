@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "Azonix";
+  src: url("assets/fonts/Azonix.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Newake";
+  src: url("assets/fonts/Newake-Font-Demo.otf") format("opentype");
+}
+
+body {
+  font-family: Azonix !important;
+  margin: 0;
+  padding: 0;
+  overflow: hidden !important;
+}
+
+button {
+  font-family: Azonix !important;
+}
+
+.background {
+  position: fixed;
+  background-attachment: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/home_wall.gif");
+  background-size: cover;
+  z-index: -1000;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1001;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100% !important;
+  user-select: none;
+  z-index: 10 !important;
+}
+
+.box {
+  display: grid;
+  border-radius: 8px;
+  color: orange;
+  margin-bottom: 70px;
+  width: 95%;
+  height: 90%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+}
+
+/* GOOGLE CHROME */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill::first-line,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  font-family: Newake 15px !important;
+  font-size: 15px !important;
+  -webkit-text-fill-color: orange;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* MOZILLA */
+
+input:-moz-placeholder,
+input::-moz-placeholder {
+  font-family: Newake 15px !important;
+  font-size: 15px !important;
+  color: orange;
+  opacity: 1 !important;
+}
+
+input::-moz-scrollbars {
+  display: none;
+}

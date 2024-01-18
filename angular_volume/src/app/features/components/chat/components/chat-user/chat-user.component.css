@@ -1,0 +1,37 @@
+.card {
+  position: relative;
+  padding: 30px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: darkslateblue;
+}
+
+.img {
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.username {
+  font-family: Newake;
+  position: relative;
+  left: 6vw;
+  font-size: 20px;
+}
+
+@media (max-width: 1255) {
+  .img {
+    .profile-image-container {
+      max-width: 40px !important;
+      max-height: 40px !important;
+    }
+  }
+
+  .username {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,40 @@
+<ng-container *ngIf="!openPopUp; else popup"
+  ><div class="login-container">
+    <div class="login-box">
+      <h1 class="login-title">TRASCENDENCE</h1>
+      <form id="loginForm" [formGroup]="loginForm">
+        <div>
+          <input
+            formControlName="email"
+            id="email"
+            name="email"
+            type="email"
+            class="login-input"
+            placeholder="Email"
+            autocomplete="on"
+            spellcheck="false"
+          />
+        </div>
+        <app-password
+          id="password"
+          formControlName="password"
+          [placeholder]="'Password'"
+        ></app-password>
+        <div class="split-button">
+          <button class="left-half" (click)="onSubmit()">LOGIN</button>
+          <button class="right-half" (click)="on42AuthClick()">42</button>
+        </div>
+        <div class="error">{{ errorMsg }}</div>
+      </form>
+      <div class="login-footer">
+        <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+      </div>
+    </div>
+  </div></ng-container
+>
+<ng-template #popup
+  ><app-popup
+    [isOpen]="openPopUp"
+    (isOpenChange)="openPopUp = $event"
+  ></app-popup
+></ng-template>

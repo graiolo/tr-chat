@@ -1,0 +1,15 @@
+{
+  "/nest/*": {
+    "target": "http://nest:3000/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+
+  "/socket.io/*": {
+    "target": "ws://nest:3000/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "ws": true
+  }
+}

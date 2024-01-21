@@ -5,6 +5,7 @@
 	border-radius: 20px;
 	background-color: rgba(24, 25, 26, 0.9);
 	border: 2px solid black;
+
 }
   
 .player-title {
@@ -32,15 +33,23 @@
 
 .player-list {
 	grid-row: 4 / 5;
-	display: grid;
 	overflow-y: auto !important;
 	overflow-x: hidden;
-	display: flex;
+	display: grid;
 	flex-direction: column;
-  }
+}
   
 .player-items {
+	box-sizing: border-box;
 	margin: 20px;
+	border-bottom: 2px solid black;
+	padding-bottom: 28px;
+	width: 100%; 
+}
+
+.player-items:last-child {
+	border-bottom: none;
+	padding-bottom: 0;
 }
 
 .player-menu {
@@ -56,28 +65,8 @@
 .player-list div:hover .player-menu {
 	display: block;
 	margin-left: 10px;
-  
 }
 
-.button {
-	background-color: darkslateblue;
-	color: orange;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-  
-.button:hover {
-	background-color: rgb(41, 33, 91);
-}
-  
-.button:last-child {
-	margin-right: 0; /* pas de marge droite pour le dernier bouton */
-}
-  
 .invateToGame {
 	background-color: darkslateblue; 
 	color: orange; 
@@ -86,12 +75,37 @@
 	border-radius: 5px;
 	cursor: pointer;
 	margin-bottom: 10px;
+	width: 100%;
 }
-  
-.invateToGame:hover {
-	background-color: rgb(41, 33, 91);
+
+.container {
+	display: flex;
 }
-  
+
+.profile {
+	flex-grow: 1;
+	background-color: darkslateblue;
+	color: orange;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.DM {
+	flex-grow: 1;
+	background-color: darkslateblue;
+	color: orange;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 44%;
+}
+
 .block {
 	background-color: darkslateblue; 
 	color: orange; 
@@ -101,8 +115,51 @@
 	cursor: pointer;
 	margin-right: 5px;
 	margin-bottom: 10px;
+	width: 100%;
 }
-  
-.block:hover {
-	background-color: rgb(41, 33, 91);
+
+.mute {
+	flex-grow: 1;
+	background-color: darkslateblue;
+	color: orange;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.kick {
+	flex-grow: 1;
+	background-color: darkslateblue;
+	color: orange;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 54%;
+}
+
+.ban {
+	background-color: darkslateblue; 
+	color: orange; 
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.set_admin {
+	background-color: darkslateblue; 
+	color: orange; 
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 100%;
 }

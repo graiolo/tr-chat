@@ -8,13 +8,13 @@
       {{ player.name }}
       <div *ngIf="player.showMenu" class="player-menu">
         <button class="invateToGame" (click)="inviteToGame(player)">Invate to game</button>
-        <button class="button" (click)="profile(player)">Profile</button>
-        <button class="button" (click)="DM(player)">DM</button>
+        <button class="profile" (click)="profile(player)">Profile</button>
+        <button class="DM" (click)="DM(player)">DM</button>
         <button class="block" (click)="block(player)">Block</button>
-        <button class="button" (click)="mute(player)">Mute</button>
-        <button class="button" (click)="kick(player)">Kick</button>
-        <button class="invateToGame" (click)="ban(player)">Ban</button>
-        <button class="invateToGame" (click)="set_admin(player)">Set admin</button>
+        <button class="mute" (click)="mute(player)">Mute</button>
+        <button class="kick" (click)="kick(player)">Kick</button>
+        <button class="ban" (click)="ban(player)">Ban</button>
+        <button class="set_admin" (click)="set_admin(player)">Set admin</button>
       </div>
     </div>
   </section>

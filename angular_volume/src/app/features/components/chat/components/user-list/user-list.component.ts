@@ -11,6 +11,7 @@ export class UserListComponent {
 	players: any[] = [
 		{ name: 'Player 1', showMenu: false },
 		{ name: 'Player 2', showMenu: false },
+		{ name: 'Player 3', showMenu: false }
 	];
 
 	constructor(
@@ -18,6 +19,7 @@ export class UserListComponent {
 		this.players = [
 		  { name: 'Player 1', showMenu: false },
 		  { name: 'Player 2', showMenu: false },
+		  { name: 'Player 3', showMenu: false }
 		];
 	  }
 

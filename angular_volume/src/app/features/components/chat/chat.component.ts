@@ -22,6 +22,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   public channels!: string[]; // Populate with actual channels
   public users!: string[]; // Populate with actual user list
 
+
   search: string;
   placeholder: string;
   isOpen: boolean;
@@ -29,6 +30,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   msgToShow: string | null = null;
   screenW: any;
   allRead: boolean;
+  selectedOption: string | undefined;
+
 
   queryParams: {[key:string]:string} = {}
   chat: any[];
@@ -38,6 +41,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     this.screenW = window.innerWidth;
+  
   }
   constructor(
     readonly userService: UserService,
@@ -55,18 +59,15 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.title = 'CHAT';
     this.allRead = false;
   }
-  
+
   ngAfterViewChecked(): void {
-    // Controlla se isOpen è true
     if (this.isOpen) {
-      // Scorri fino in fondo al div
       this.scrollToBottom();
     }
   }
 
   private scrollToBottom(): void {
     try {
-      // Usa Renderer2 per eseguire l'operazione in modo sicuro
       this.renderer.setProperty(this.messageArea.nativeElement, 'scrollTop', this.messageArea.nativeElement.scrollHeight);
     } catch (error) {
       console.error(error);
@@ -78,6 +79,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.screenW = window.innerWidth;
     const params = this.route.snapshot.queryParams;
     this.initializeChat();
+  }
+
+  onDropdownChange(event: any): void {
+    this.selectedOption = event.target.value;
+    console.log('Selected option:', this.selectedOption);
   }
 
   private onUserNotFound(){

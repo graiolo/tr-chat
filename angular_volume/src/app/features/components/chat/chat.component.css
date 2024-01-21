@@ -1,6 +1,6 @@
 .box {
   display: grid;
-  grid-template-columns: 1.5fr 5fr;
+  grid-template-columns: 1.5fr 5fr 1.5fr;
   grid-template-rows: 5fr;
   border-radius: 20px;
   background-color: rgba(24, 25, 26, 0.9);
@@ -42,7 +42,41 @@
     0 0 40px #00c4ff, 0 0 70px #00c4ff, 0 0 80px #00c4ff, 0 0 100px #00c4ff;
 }
 
+.not_found {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.player-title p {
+  position: relative;
+  top: 5px;
+  font-size: 25px;
+  color: darkslateblue;
+  text-shadow: 0 0 10px #fff, 0 0 20px #00c4ff, 0 0 30px #00c4ff,
+    0 0 40px #00c4ff, 0 0 70px #00c4ff, 0 0 80px #00c4ff, 0 0 100px #00c4ff;
+}
+
 .search {
+  padding: 15px;
+  color: white;
+  font-family: Newake;
+  border: 0px;
+  border-bottom: 2px solid black;
+  background: rgb(0, 0, 0, 0.5);
+  text-indent: 20px;
+  outline: none;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.player_online {
   padding: 15px;
   color: white;
   font-family: Newake;
@@ -106,14 +140,34 @@
 .message-container button {
   grid-column: 3;
   position: absolute;
-  right: 10px;
+  right: 265px;
   border: none;
   color: white;
   font-size: 15px;
   cursor: pointer;
-  border-radius: 50px;
-  padding: 17px;
+  border-radius: 80px;
+  padding: 18px;
   background-color: darkslateblue;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.invateToGame {
+  background-color: darkslateblue; 
+  color: black; 
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.invateToGame:hover {
+  background-color: rgb(41, 33, 91);
 }
 
 .message-area {
@@ -184,7 +238,6 @@
   }
 
   .message-container {
-    grid-row: 5 / 5;
+    grid-row: 4 / 5;
   }
 }
-

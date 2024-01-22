@@ -32,7 +32,9 @@
       <section class="message-area" #messageArea>
         <app-message *ngFor="let message of messages" [message]="message"></app-message>
       </section>
-      <app-user-list #userList></app-user-list>
+      <section #userList>
+        <app-user-list [user]="whoami"></app-user-list>
+      </section>
     </ng-container>
 
     <form class="message-container" (submit)="sendMessageToUser()">
@@ -55,4 +57,3 @@
   <div class="backdroppe" *ngIf="newChannel.isOpen" (click)="newChannel.changeDialogStatus()"></div>
   
 </main>
-

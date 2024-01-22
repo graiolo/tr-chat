@@ -26,16 +26,16 @@
     </button>
   </main></ng-container
 >
-<ng-template #otherUser>
+
+<ng-template #otherUser >
   <main class="card-profile-image-container">
     <img *ngIf="!conversation?.isGroup  && user"
       id="image"
       class="profile-image"
       [src]="user.img"
       [ngStyle]="{
-        'color': !conversation.allRead ? 'red' : (user.isPlaying ? 'orange' : (user.isOnline ? 'green' : 'red'))
+        color: !conversation!.allRead ? 'purple' : (user.isPlaying ? 'orange' : (user.isOnline ? 'green' : 'red'))
       }"
-      
     />
     <img *ngIf="conversation?.isGroup"
       id="image"

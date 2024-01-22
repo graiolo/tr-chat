@@ -7,5 +7,6 @@
   <section class="message other">
     <span *ngIf="!currentUser" class="username">{{ message.user }}</span>
     <span class="message-content">{{ message.msg }}</span>
+    <span *ngFor="let mebmer of message.mebmers"> {{mebmer}}</span>
   </section>
 </ng-template>

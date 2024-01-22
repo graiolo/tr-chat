@@ -54,6 +54,29 @@ export class ChannelsController {
         return channel;
   }
 
+  @Get(':channelsId')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse()
+  async getChannelId(
+    @GetUser() user: User,
+    @Param('channelsId') channelId: string,
+  ) {
+        let channel = await this.prisma.channel.findUnique({
+            where: {
+                id: channelId,
+            },
+            include: {
+               members: {
+                    include: {
+                        user: true,
+                    },
+                },
+            },
+        });
+        return channel;
+  }
+
   @Get('members/:channelId')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()

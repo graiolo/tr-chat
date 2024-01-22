@@ -107,7 +107,19 @@
 }
 
 .block {
-	background-color: darkslateblue; 
+	background-color: rgb(131, 12, 12); 
+	color: orange; 
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.unblock {
+	background-color: rgb(42, 100, 25); 
 	color: orange; 
 	padding: 15px 30px;
 	border: none;
@@ -153,8 +165,30 @@
 	width: 100%;
 }
 
+.unban {
+	background-color: rgb(8, 88, 82); 
+	color: orange; 
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
 .set_admin {
 	background-color: darkslateblue; 
+	color: orange; 
+	padding: 15px 30px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.rm_admin {
+	background-color: rgb(128, 28, 45); 
 	color: orange; 
 	padding: 15px 30px;
 	border: none;

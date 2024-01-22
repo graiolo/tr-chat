@@ -72,12 +72,10 @@ export class NewChannelComponent implements OnInit, AfterViewInit {
   }
 
   createNewChannel() {
-    // console.log('channel name', this.channelName);
-    // console.log('user search', this.search);
     if (this.channelName !== '') {
       if (this.channelUsers.length !== 0) {
         this.errorMsg = '';
-        this.chatGateway.createNewPublicChannel(this.channelName, this.channelUsers, this.userService.getUser());
+        this.chatGateway.createNewChannel(this.channelName, this.channelUsers, this.userService.getUser(), this.selectedGroupType, this.password);
         this.changeDialogStatus();
       } else {
         this.errorMsg = 'Insert channel users';
@@ -87,5 +85,6 @@ export class NewChannelComponent implements OnInit, AfterViewInit {
       this.errorMsg = 'Insert channel name';
       this.channelUsers = [];
     }
+    this.channelUsers = [];
   }
 }

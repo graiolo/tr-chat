@@ -65,6 +65,7 @@ import { log } from 'console';
 	}
   
 	
+	
 	@SubscribeMessage('checkOpponent')
 	async handleCheckOpponent(client: Socket, callback: Function): Promise<void> {
 		// Check if there is an opponent connected

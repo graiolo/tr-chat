@@ -1,3 +1,4 @@
+import { UserListComponent } from './components/user-list/user-list.component';
 import { AfterViewChecked, Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { channel } from 'diagnostics_channel';
@@ -21,6 +22,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   public errorMsg: string = '';
   public channels!: string[]; // Populate with actual channels
   public users!: string[]; // Populate with actual user list
+  public whoami!: UserInfo;
+  public userLis!: UserInfo[];
 
 
   search: string;
@@ -75,6 +78,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   ngOnInit(): void {
+    //this.chatGateway.deleteAllChannels();
     this.messages = [];
     this.screenW = window.innerWidth;
     const params = this.route.snapshot.queryParams;
@@ -197,7 +201,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
     )
     this.chatGateway.receiveUserChannels(this.userService.getUser());
-    // To DO: $subscribe user joining, leaving, etc.
   }
 
   sendMessageToChannel(): void {
@@ -228,7 +231,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   // TO DO: handling user joining, leaving, etc.
 
-  openChat(conversation: any) {
+  async openChat(conversation: any) {
     if (this.queryParams['id'] === conversation.id)
       return;
     conversation = conversation;
@@ -245,6 +248,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.msgToShow = null;
     this.chatGateway.sendLastSeen(conversation.id, this.userService.getUser());
     conversation.allRead = true;
+    this.whoami = await this.userService.getUserInfo();
+    this.chatGateway.getChannelById(conversation.id);
   }
 
 

@@ -1,7 +1,8 @@
 import { Channel, User, UserRole } from '@prisma/client';
-import { Injectable } from "@nestjs/common";
+import { ConsoleLogger, Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UsersService } from "src/users/users.service";
+import { UserStatus } from '@prisma/client';
 
 @Injectable()
 export class ChannelsService {
@@ -9,23 +10,55 @@ export class ChannelsService {
     private prisma: PrismaService,
     private usersService: UsersService,
   ) {}
-  
-  async createPublicChannel(channelName:string) {
+
+
+  async deleteAllChannels(){
+    await this.prisma.message.deleteMany();
+    await this.prisma.channelMembership.deleteMany();
+    await this.prisma.channel.deleteMany();
+    return true;
+  }
+
+
+  async changeUserStatus(channelId: string, username: string, status: string | null) {
+    console.log('changeUserStatus', channelId, username, status);
+    const user = await this.usersService.findUserByName(username);
+    const channel = await this.prisma.channel.findUnique({
+      where:{
+        id: channelId
+      }
+    });
+    return this.prisma.channelMembership.update({
+      where:{
+        userId_channelId:{
+          userId: user.id,
+          channelId: channel!.id
+        }
+      },
+      data: {
+        status: status as UserStatus | null
+      }
+    });
+    }
+
+
+  async createPrivateChannel(channelName:string) {
     return this.prisma.channel.create({
         data: {
-          type: 'PUBLIC',
+          type: 'PRIVATE',
           name: channelName,
           img: 'https://cdn.dribbble.com/users/2092880/screenshots/6426030/pong_1.gif',
         },
     });
   }
 
-  async createPrivateChannel(channelName:string, password:string) {
+  async createPublicChannel(channelName:string, password:string) {
     return this.prisma.channel.create({
         data: {
-          type: 'PRIVATE',
+          type: 'PUBLIC',
           name: channelName,
-          password: password
+          password: password,
+          img: 'https://cdn.dribbble.com/users/2092880/screenshots/6426030/pong_1.gif',
         },
     });
   }
@@ -86,15 +119,17 @@ export class ChannelsService {
     });
   }
 
-  async createNewPublicChannel(channelName: string, users: string[], creator: string) {
+  async createNewChannel(channelName: string, users: string[], creator: string, groupType: string, password: string) {
     let obJChannel;
     try {
-      obJChannel = await this.createPublicChannel(channelName);
-    } catch (error) {
+    if (groupType !== 'public') {
+      obJChannel = await this.createPrivateChannel(channelName);
+    } else {
+      obJChannel = await this.createPublicChannel(channelName, password);
+    } } catch (error) {
       return null;
     }
     const objOwn = await this.usersService.findUserByName(creator);
-    //console.log('objChannel',{obJChannel});
     await this.createChannelMembership(objOwn, obJChannel, 'OWNER');
     const objUsers = await this.prisma.user.findMany({
       where: {
@@ -186,6 +221,37 @@ export class ChannelsService {
       }};
   }  
 
+  async getChannelById(id: string){
+    return await this.prisma.channel.findUnique({
+      where:{
+        id
+      },
+      include:{
+        members: {
+          include:{
+            user: {
+              select:{
+                id: true,
+                username: true,
+                blockedUsers: true,
+                  blockedBy: {
+                    select:{
+                      blocker:
+                      {
+                        select:{
+                          username: true
+                        }
+                      }
+                  }
+                }
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
   async getChannelMsg(sender: string, receiver:string){;
     const senderUser = await this.usersService.findUserByName(sender);
     const receiverUser = await this.usersService.findUserByName(receiver);
@@ -266,7 +332,6 @@ export class ChannelsService {
   }
 
   async flagLastMessage(channelId: string, user: string){
-    //console.log('flagLastMessage', channelId, user);
     const userObj = await this.usersService.findUserByName(user);
     return await this.prisma.channel.update({
       where:{
@@ -274,6 +339,57 @@ export class ChannelsService {
       },
       data:{
         lastSeen: {push: userObj.username},
+      }
+    });
+  }
+
+  async setAdmin(channelId: string, user: string){
+    const userObj = await this.usersService.findUserByName(user);
+    return await this.prisma.channelMembership.update({
+      where:{
+        userId_channelId:{
+          userId: userObj.id,
+          channelId: channelId
+        }
+      },
+      data:{
+        role: "ADMIN",
+      }
+    });
+  }
+
+
+  async rmAdmin(channelId: string, username: string){
+    const userObj = await this.usersService.findUserByName(username);
+    return await this.prisma.channelMembership.update({
+      where:{
+        userId_channelId:{
+          userId: userObj.id,
+          channelId: channelId
+        }
+      },
+      data:{
+        role: "MEMBER",
+      }
+    });
+  }
+
+  async rmChannel(channelId: string){
+    return await this.prisma.channel.delete({
+      where:{
+        id: channelId
+      }
+    });
+  }
+
+  async rmUserFromChannel(channelId: string, username: string){
+    const userObj = await this.usersService.findUserByName(username);
+    return await this.prisma.channelMembership.delete({
+      where:{
+        userId_channelId:{
+          userId: userObj.id,
+          channelId: channelId
+        }
       }
     });
   }

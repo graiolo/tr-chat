@@ -108,6 +108,7 @@ enum UserRole {
 enum UserStatus {
   ACTIVE
   BANNED
+  KICKED
   MUTED
 }
 

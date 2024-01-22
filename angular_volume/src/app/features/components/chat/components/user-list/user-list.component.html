@@ -1,4 +1,3 @@
-
 <section class="player-column">
   <div class="player-title">
     <p>Users list</p>
@@ -7,14 +6,28 @@
     <div class="player-items" *ngFor="let player of players" (click)="togglePlayerMenu(player)">
       {{ player.name }}
       <div *ngIf="player.showMenu" class="player-menu">
-        <button class="invateToGame" (click)="inviteToGame(player)">Invate to game</button>
-        <button class="profile" (click)="profile(player)">Profile</button>
-        <button class="DM" (click)="DM(player)">DM</button>
-        <button class="block" (click)="block(player)">Block</button>
-        <button class="mute" (click)="mute(player)">Mute</button>
-        <button class="kick" (click)="kick(player)">Kick</button>
-        <button class="ban" (click)="ban(player)">Ban</button>
-        <button class="set_admin" (click)="set_admin(player)">Set admin</button>
+          <section *ngIf="player.banOrKick != 'BANNED'">
+
+            <button class="invateToGame" (click)="inviteToGame(player)">Invate to game</button>
+            <button class="profile" (click)="profile(player)">Profile</button>
+            <button class="DM" (click)="DM(player)" [attr.disabled]="isGroupChat" [ngStyle]="{'background-color': isGroupChat ? '' : 'grey'}">DM</button>
+
+            <button *ngIf="!player.isBlock" class="block" (click)="block(player)">Block</button>
+            <button *ngIf="player.isBlock" class="unblock" (click)="unblock(player)">unBlock</button>
+
+            <section *ngIf="isGroupChat && (myRole === 'OWNER' || myRole === 'ADMIN')">
+              <button class="mute" (click)="mute(player)">Mute</button>
+              <button class="kick" (click)="kick(player)">Kick</button>
+              <button class="ban" (click)="ban(player)">Ban</button>
+
+              <button *ngIf="player.role != 'ADMIN'" class="set_admin" (click)="set_admin(player)">Set admin</button>
+              <button *ngIf="player.role == 'ADMIN'"class="rm_admin" (click)="rm_admin(player)">Remove admin</button>
+            </section>
+
+          </section>
+          <section *ngIf="player.banOrKick == 'BANNED'">
+            <button class="unban" (click)="unban(player)">unBan</button>
+          </section>
       </div>
     </div>
   </section>

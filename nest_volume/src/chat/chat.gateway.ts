@@ -13,6 +13,7 @@ import * as jwt from 'jsonwebtoken';
 import {JwtPayload} from 'jsonwebtoken'
 import { ChannelsService } from 'src/channels/channels.service';
 import { User } from '@prisma/client';
+import { group } from 'console';
 type MyJwtPayload = {
   userId: number,
 } & JwtPayload;
@@ -77,6 +78,17 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     }
   }
 
+  @SubscribeMessage('DeleteAllChannels')
+  async deleteAllChannels(client: Socket) {
+    await this.channelsService.deleteAllChannels();
+  }
+
+  @SubscribeMessage('DeleteChannel')
+  async deleteChannel(client: Socket, payload: { channelId: string }) {
+    const { channelId } = payload;
+    await this.channelsService.rmChannel(channelId);
+  }
+
   @SubscribeMessage('Authenticate')
   authentcate(client: Socket, payload: { token: string }): void {
     const { token } = payload;
@@ -97,6 +109,21 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     userSocketMap[receiver].emit('MsgFromChannel', [{ user: sender, msg: message, channelId: channel.id , from: sender, allRead: false }]);
   }
   
+
+  @SubscribeMessage("GetChannelId")
+  async getChannelId(client: Socket, payload: { id: string}) {
+    const { id } = payload;
+    const channel = await this.channelsService.getChannelById(id);
+    client.emit('ChannelId', {channelId: channel?.id} );
+  }
+
+  @SubscribeMessage("GetChannelById")
+  async getChannelById(client: Socket, payload: { id: string}) {
+    const { id } = payload;
+    const channel = await this.channelsService.getChannelById(id);
+    client.emit('Channel', {channel} );
+  }
+
   @SubscribeMessage("ReceivePrivMsg")
   async receivePrivChannelMsg(client: Socket, payload: { sender: string, receiver: string}) {
     const { sender, receiver } = payload;
@@ -112,6 +139,37 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
       })
     );
   }
+  
+  @SubscribeMessage("ReceiveUserList")
+  async reciveUserList(client: Socket, payload: { id: string}) {
+    const { id } = payload;
+    const channels = await this.channelsService.getChannelById(id);
+    const userlist: any = channels?.members.map((member:any)=>{
+      return {
+        username: member.user.usename,
+        role: member.role
+      }
+    });
+    client.emit('UserList', {userlist} );
+  }
+
+  @SubscribeMessage("LeaveChannel")
+  async leaveChannel(client: Socket, payload: { id: string, username: string}) {
+    const { id, username } = payload;
+    await this.channelsService.rmUserFromChannel(id, username);
+  }
+
+  @SubscribeMessage("SetAdmin")
+  async setAdmin(client: Socket, payload: { id: string, username: string}) {
+    const { id, username } = payload;
+    await this.channelsService.setAdmin(id, username);
+  }
+
+  @SubscribeMessage("RemoveAdmin")
+  async removeAdmin(client: Socket, payload: { id: string, username: string}) {
+    const { id, username } = payload;
+    await this.channelsService.rmAdmin(id, username);
+  }
 
   @SubscribeMessage("GetLastSeen")
   async getLastSeen(client: Socket, payload: { channelId: string}) {
@@ -125,10 +183,10 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     this.server.emit('UserChannelList', {channels} );
   }
 
-  @SubscribeMessage('CreateNewPublicChannel')
-  async createNewPublicChannel(client: Socket, payload: { channelName: string, users: string[], creator: string }) {
-    const { channelName, users, creator } = payload;
-    const newChannel = await this.channelsService.createNewPublicChannel(channelName, users, creator);
+  @SubscribeMessage('CreateNewChannel')
+  async createNewChannel(client: Socket, payload: { channelName: string, users: string[], creator: string, groupType: string, password: string }) {
+    const { channelName, users, creator, groupType, password } = payload;
+    const newChannel = await this.channelsService.createNewChannel(channelName, users, creator, groupType, password);
     this.server.emit('CreatedNewPublicChannel', {channel: {...newChannel, isGroup:true}});
   }
 
@@ -146,6 +204,13 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     const { channelId, user } = payload;
     await this.channelsService.flagLastMessage(channelId, user);
   }
+
+  @SubscribeMessage('ChangeUserStatus')
+  async handleChangeUserStatus(client: Socket, payload: { channelId: string, username: string, status: string | null}) {
+    const { channelId, username, status } = payload;
+    await this.channelsService.changeUserStatus(channelId, username, status);
+  }
+
 
   @SubscribeMessage('ReceiveChMsg')
   async receiveChannelMsg(client: Socket, payload: { id: string}) {

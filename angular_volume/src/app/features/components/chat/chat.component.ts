@@ -1,3 +1,4 @@
+import { ConsoleLogger } from '@nestjs/common';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AfterViewChecked, Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -173,15 +174,19 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           return {...channel,
                   isGroup,
                   allRead};
-          }); 
-          if (this.queryParams['username']){
-            this.selectedChannel = this.channels?.find((ch:any)=>{
-              return (ch.name === this.queryParams['username'])
-            })
-            //console.log(this.selectedChannel)
-          } else if (this.queryParams['id']){
-            this.selectedChannel = this.channels?.find((ch:any)=>ch.id === this.queryParams['id'])
-          }
+          });
+          this.channels = this.channels.filter((channel: any) => {
+            return channel.members.some((member: any) => {
+              return (member.user.username === this.userService.getUser() && !["KICKED", "BANNED"].includes(member.status));
+            });
+          });
+          // if (this.queryParams['username']){
+          //   this.selectedChannel = this.channels?.find((ch:any)=>{
+          //     return (ch.name === this.queryParams['username'])
+          //   })
+          // } else if (this.queryParams['id']){
+          //   this.selectedChannel = this.channels?.find((ch:any)=>ch.id === this.queryParams['id'])
+          // }
         },
         error: (error) => {
           this.errorMsg = `Error receiving channel list`;

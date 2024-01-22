@@ -15,7 +15,7 @@
             <button *ngIf="!player.isBlock" class="block" (click)="block(player)">Block</button>
             <button *ngIf="player.isBlock" class="unblock" (click)="unblock(player)">unBlock</button>
 
-            <section *ngIf="isGroupChat && (myRole === 'OWNER' || myRole === 'ADMIN')">
+            <section *ngIf="isGroupChat && (myRole === 'OWNER' || myRole === 'ADMIN') && player.role !== 'OWNER'">
               <button class="mute" (click)="mute(player)">Mute</button>
               <button class="kick" (click)="kick(player)">Kick</button>
               <button class="ban" (click)="ban(player)">Ban</button>
@@ -24,6 +24,9 @@
               <button *ngIf="player.role == 'ADMIN'"class="rm_admin" (click)="rm_admin(player)">Remove admin</button>
             </section>
 
+          </section>
+          <section *ngIf="player.role === 'OWNER'">
+            <button class="invateToGame" [ngStyle]="{'background-color': 'yellow'}">OWNER CH</button>
           </section>
           <section *ngIf="player.banOrKick == 'BANNED'">
             <button class="unban" (click)="unban(player)">unBan</button>

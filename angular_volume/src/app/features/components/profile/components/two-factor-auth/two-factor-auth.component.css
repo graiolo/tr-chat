@@ -1,6 +1,6 @@
 .google-auth {
   cursor: pointer;
-  color: red;
+  color: rgb(107, 15, 15);
 }
 
 .qr {
@@ -43,7 +43,7 @@
 .warning {
   grid-row: 1 / 1;
   margin-bottom: 35px;
-  color: red;
+  color: rgb(107, 15, 15);
   background-color: white;
   padding: 10px;
   border-radius: 20px;
@@ -66,7 +66,7 @@
   padding: 15px;
   transition: background 0.3s;
   color: white;
-  background-color: red;
+  background-color: rgb(107, 15, 15);
 }
 
 .buttons .left {
@@ -79,7 +79,7 @@
   padding: 15px;
   transition: background 0.3s;
   color: white;
-  background-color: green;
+  background-color: rgb(37, 81, 37);
 }
 
 @media (max-width: 1255px) {

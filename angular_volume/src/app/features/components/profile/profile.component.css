@@ -81,24 +81,26 @@
 .win {
   grid-row: 1 / 1;
   text-align: right;
+  color: darkslateblue; 
 }
 
 .winRes {
   grid-row: 2 / 2;
   text-align: right;
-  color: green;
+  color: rgb(3, 62, 35);
   padding-bottom: 20px;
 }
 
 .lose {
   grid-row: 3 / 3;
   text-align: right;
+  color: darkslateblue;
 }
 
 .loseRes {
   grid-row: 4 / 4;
   text-align: right;
-  color: red;
+  color: rgb(107, 15, 15);
   padding-bottom: 20px;
 }
 
@@ -133,7 +135,8 @@
   font-size: 15px;
   padding: 15px;
   transition: background 0.3s;
-  color: white;
+  color: rgb(184, 182, 195);
+  border-color: darkslateblue;
   background-image: linear-gradient(to right, purple, orange);
 }
 
@@ -276,6 +279,7 @@
   .logout {
     grid-row: 6 / 6;
     grid-column: 1 / 1;
+
   }
 
   .logout-bt {

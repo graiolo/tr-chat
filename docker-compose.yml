@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:13.5
     networks:
-      trascendence_network:
+      transcendence_network:
         aliases:
           - post
     env_file:
@@ -20,7 +20,7 @@ services:
     depends_on:
       - postgres
     networks:
-      trascendence_network:
+      transcendence_network:
         aliases:
           - nest
     env_file:
@@ -40,7 +40,7 @@ services:
       - postgres
       - nest
     networks:
-      trascendence_network:
+      transcendence_network:
         aliases:
           - angular
     volumes:
@@ -58,7 +58,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      trascendence_network:
+      transcendence_network:
         aliases:
           - ngx
     env_file:
@@ -66,7 +66,7 @@ services:
     restart: unless-stopped
 
 networks:
-  trascendence_network:
+  transcendence_network:
 
 volumes:
   nest_volume:

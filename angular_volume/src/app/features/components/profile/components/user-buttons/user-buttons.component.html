@@ -28,3 +28,12 @@
     <span (click)="unblockUser()">UNBLOCK</span>
   </div>
 </ng-template>
+<main class="profile-image-container">
+  <img
+    id="image"
+    class="profile-image"
+    [src]="isBlocked ? getBlockedUserImg() : user.img"
+    appChangeImage
+    [ngStyle]="{color: user.isPlaying ? 'orange' : user.isOnline ? 'green' : 'red'}"
+  />
+</main>

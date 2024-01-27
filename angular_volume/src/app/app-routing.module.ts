@@ -5,7 +5,7 @@ import { loginGuard } from './core/guards/login.guard';
 
 const routes: Routes = [
   {
-    path: 'trascendence',
+    path: 'transcendence',
     canActivate: [authGuard],
     loadChildren: () =>
       import('./features/features-routing.module').then(

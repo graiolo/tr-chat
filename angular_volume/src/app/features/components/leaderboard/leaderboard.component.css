@@ -55,7 +55,7 @@
   left: 20vw;
   font-size: 35px;
   cursor: pointer;
-  color: orange;
+  color: rgb(255, 254, 255);
   display: inline-block;
 }
 
@@ -74,7 +74,7 @@
   top: 50%;
   left: 80vw;
   transform: translate(-50%, -50%);
-  color: green;
+  color: rgb(37, 81, 37);
   font-size: 30px;
 }
 
@@ -83,7 +83,7 @@
   top: 50%;
   left: 90vw;
   transform: translate(-50%, -50%);
-  color: red;
+  color: rgb(107, 15, 15);
   font-size: 30px;
 }
 
@@ -133,7 +133,7 @@
     top: 50%;
     left: 80%;
     transform: translate(-50%, -50%);
-    color: green;
+    color: rgb(37, 81, 37);
     font-size: 20px;
   }
 
@@ -142,7 +142,7 @@
     top: 50%;
     left: 90%;
     transform: translate(-50%, -50%);
-    color: red;
+    color: rgb(107, 15, 15);
     font-size: 20px;
   }
 }

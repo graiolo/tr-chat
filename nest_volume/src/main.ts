@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Trascendece')
-    .setDescription('The Trascendence API description')
+    .setDescription('The transcendence API description')
     .setVersion('0.1')
     .addBearerAuth()
     .build();

@@ -16,7 +16,7 @@ export class TwoFactorAuthService {
     const otpauthUrl = speakeasy.otpauthURL({
       secret,
       encoding: 'base32',
-      label: 'trascendence',
+      label: 'transcendence',
       issuer: 'fratCarnal',
     });
   return qrcode.toDataURL(otpauthUrl);

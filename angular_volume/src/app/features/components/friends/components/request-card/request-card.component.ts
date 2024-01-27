@@ -41,6 +41,6 @@ export class RequestCardComponent implements OnInit {
   }
 
   openProfile() {
-    this.router.navigate(['/trascendence/profile', this.username]);
+    this.router.navigate(['/transcendence/profile', this.username]);
   }
 }

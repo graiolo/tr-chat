@@ -32,8 +32,6 @@
       placeholder="Insert password"
     />
   </div>
-  
-
   <section class="select-area">
     <span>CHANNEL USERS:</span>
     <div class="space">
@@ -45,8 +43,8 @@
   <button style="background-color: green" (click)="createNewChannel()">
     CREATE
   </button>
-  <button style="background-color: red" (click)="changeDialogStatus()">
+  <button style="background-color: rgb(107, 15, 15)" (click)="changeDialogStatus()">
     CANCEL
   </button>
-  <span style="color: red">{{ errorMsg }}</span>
+  <span style="color: rgb(107, 15, 15)">{{ errorMsg }}</span>
 </dialog>

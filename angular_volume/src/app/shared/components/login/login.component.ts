@@ -138,7 +138,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         await this.userService.setUserAvatar(resp.id, img);
       }
     });
-    this.router.navigate(['/trascendence/home/']);
+    this.router.navigate(['/transcendence/home/']);
   }
 
   private isFieldEmpty(field: string): boolean {

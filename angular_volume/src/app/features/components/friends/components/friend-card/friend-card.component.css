@@ -127,7 +127,7 @@
   bottom: 24px;
   right: 90px;
   text-align: center;
-  color: green;
+  color: rgb(37, 81, 37);
   font-size: 12px;
 }
 
@@ -136,7 +136,7 @@
   bottom: 24px;
   right: 30px;
   text-align: center;
-  color: red;
+  color: rgb(107, 15, 15);
   font-size: 12px;
 }
 
@@ -190,7 +190,7 @@
     bottom: 21px;
     right: 70px;
     text-align: center;
-    color: green;
+    color: rgb(37, 81, 37);
     font-size: 12px;
   }
 
@@ -199,7 +199,7 @@
     bottom: 21px;
     right: 16px;
     text-align: center;
-    color: red;
+    color: rgb(107, 15, 15);
     font-size: 12px;
   }
 }
@@ -288,7 +288,7 @@
     bottom: 19px;
     right: 60px;
     text-align: center;
-    color: green;
+    color: rgb(37, 81, 37);
     font-size: 9px;
   }
 
@@ -297,7 +297,7 @@
     bottom: 19px;
     right: 20px;
     text-align: center;
-    color: red;
+    color: rgb(107, 15, 15);
     font-size: 9px;
   }
 }

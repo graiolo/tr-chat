@@ -1,11 +1,11 @@
 <div class="navbar">
   <ng-container *ngIf="screenW > 950; else mobileBar"
     ><nav class="menu">
-      <span class="logo" routerLink="/trascendence/home">TRASCENDENCE</span>
-      <a routerLink="/trascendence/chat" (click)="onChatClick()">CHAT</a>
-      <a routerLink="/trascendence/leaderboard">LEADERBOARD</a>
-      <a routerLink="/trascendence/friends">FRIENDS</a>
-      <a [routerLink]="['/trascendence/profile', user]">{{ user }}</a>
+      <span class="logo" routerLink="/transcendence/home">transcendence</span>
+      <a routerLink="/transcendence/chat" (click)="onChatClick()">CHAT</a>
+      <a routerLink="/transcendence/leaderboard">LEADERBOARD</a>
+      <a routerLink="/transcendence/friends">FRIENDS</a>
+      <a [routerLink]="['/transcendence/profile', user]">{{ user }}</a>
     </nav></ng-container
   >
   <ng-template #mobileBar
@@ -14,13 +14,13 @@
       style="color: #ffa500; z-index: 10000"
       appDropmenu
     ></i>
-    <span class="logo" routerLink="/trascendence/home">TRASCENDENCE</span>
+    <span class="logo" routerLink="/transcendence/home">transcendence</span>
     <div class="backresp" appDropmenu>
       <nav class="responsive">
-        <a routerLink="/trascendence/chat" (click)="onChatClick()">CHAT</a>
-        <a routerLink="/trascendence/leaderboard">LEADERBOARD</a>
-        <a routerLink="/trascendence/friends">FRIENDS</a>
-        <a [routerLink]="['/trascendence/profile', user]">{{ user }}</a>
+        <a routerLink="/transcendence/chat" (click)="onChatClick()">CHAT</a>
+        <a routerLink="/transcendence/leaderboard">LEADERBOARD</a>
+        <a routerLink="/transcendence/friends">FRIENDS</a>
+        <a [routerLink]="['/transcendence/profile', user]">{{ user }}</a>
       </nav>
     </div></ng-template
   >

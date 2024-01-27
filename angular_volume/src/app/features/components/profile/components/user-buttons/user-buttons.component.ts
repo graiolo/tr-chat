@@ -1,7 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef} from '@angular/core';
 import { FriendsService } from 'src/app/core/services/friends.service';
 import { Router } from '@angular/router';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { log } from 'console';
+import { UserService } from 'src/app/core/services/user.service';
+import { UserInfo } from 'src/app/models/userInfo.model';
+import { BLOCKED_USER_INFO } from 'src/app/models/userInfo.model'
+
 
 @Component({
   selector: 'app-user-buttons',
@@ -12,10 +17,13 @@ export class UserButtonsComponent {
   @Input() username!: string;
   @Input() isFriend!: boolean;
   @Input() isBlocked!: boolean;
+  @Input() user!: UserInfo;
 
   constructor(
     private readonly friendsService: FriendsService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly imageCompress: NgxImageCompressService,
+    private readonly userService: UserService
   ) {}
 
   async addFriend() {
@@ -42,8 +50,12 @@ export class UserButtonsComponent {
       .then(() => (this.isBlocked = false));
   }
 
+  getBlockedUserImg(): string {
+    return BLOCKED_USER_INFO.img || '';
+  }
+  
   openFriendChat() {
-    this.router.navigate(['/trascendence/chat/'], {
+    this.router.navigate(['/transcendence/chat/'], {
       queryParams: { username: this.username },
     });
   }

@@ -44,11 +44,11 @@ export class FriendCardComponent implements OnInit, AfterViewInit {
   }
 
   openFriendProfile() {
-    this.router.navigate(['/trascendence/profile', this.username]);
+    this.router.navigate(['/transcendence/profile', this.username]);
   }
 
   openFriendChat() {
-    this.router.navigate(['/trascendence/chat/'], {
+    this.router.navigate(['/transcendence/chat/'], {
       queryParams: { username: this.username },
     });
   }

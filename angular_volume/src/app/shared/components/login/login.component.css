@@ -61,7 +61,7 @@
 
 .login-footer a {
   font-size: 15px;
-  color: blue;
+  color: rgb(16, 57, 25);
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@
   justify-content: center;
   font-size: 15px;
   margin-top: 25px;
-  color: red;
+  color: rgb(107, 15, 15);
 }
 
 .split-button {

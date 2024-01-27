@@ -57,7 +57,7 @@
 }
 
 .accept {
-  color: green;
+  color: rgb(37, 81, 37);
   position: relative;
   font-size: 20px;
   top: 50%;
@@ -67,7 +67,7 @@
 }
 
 .refuse {
-  color: red;
+  color: rgb(107, 15, 15);
   position: relative;
   font-size: 20px;
   top: 50%;

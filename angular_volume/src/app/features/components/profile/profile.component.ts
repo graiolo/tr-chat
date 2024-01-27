@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (username !== undefined) {
           this.profileInit(username);
         } else {
-          this.router.navigate(['/trascendence/home']);
+          this.router.navigate(['/transcendence/home']);
         }
       })
     );

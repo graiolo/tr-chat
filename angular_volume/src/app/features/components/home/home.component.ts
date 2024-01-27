@@ -16,6 +16,6 @@ export class HomeComponent {
   }
 
   gameNavigate() {
-    this.router.navigate(['/trascendence/pong/']);
+    this.router.navigate(['/transcendence/pong/']);
   }
 }

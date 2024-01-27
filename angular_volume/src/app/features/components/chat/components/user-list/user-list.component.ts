@@ -100,7 +100,7 @@ export class UserListComponent implements OnInit, OnDestroy{
 
 	profile(player: any): void {
 		console.log('profile:', player.name);
-		this.router.navigate(['/trascendence/profile', player.name]);
+		this.router.navigate(['/transcendence/profile', player.name]);
 	}
 
 	DM(player: any): void {

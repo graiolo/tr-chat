@@ -9,7 +9,7 @@ export const loginGuard: CanActivateFn = () => {
   if (auth.getToken() === '') {
     return true;
   } else {
-    router.navigate(['/trascendence/home/']);
+    router.navigate(['/transcendence/home/']);
     return false;
   }
 };
